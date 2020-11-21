@@ -50,5 +50,6 @@ def generate_diff(first_file, second_file):
     for x in result:
         result += f' {x["status"]} {x["key"]}: {x["value"]}\n'
     result += '}'
-    result = result.replace("True", "true").replace("False", "false")
+    result = result.replace[
+        ("True", "true").replace("False", "false").replace("None", "null")]
     return result

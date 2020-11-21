@@ -12,8 +12,10 @@ gendiff = "gendiff.scripts.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pytest = "^6.1.2"
 
 [tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
 
 [build-system]
 requires = ["poetry>=0.12"]
