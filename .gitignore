@@ -4,3 +4,7 @@
 /.idea
 /dist
 *.json
+*.xml
+__pycache__
+.coverage
+coverage.xml
