@@ -24,14 +24,19 @@ jobs:
       run: pip install poetry
     - name: install dependency
       run: make install
-    - name: install coverage and pytest
-      run:  pip install coverage pytest
     - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v2.7.4
       env:
         CC_TEST_REPORTER_ID: bcab0d641b57b4dabecdfac11d60fe91ea962ecaa54fce7d8af0bcac687f9683
-      with:
-        coverageCommand: poetry run coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json 
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+        ./cc-test-reporter before-build
+        poetry run coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json
+        poetry run coverage report
+        ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+# with:
+      #  coverageCommand: poetry run coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json 
     - name: lint
       run: make lint
    
