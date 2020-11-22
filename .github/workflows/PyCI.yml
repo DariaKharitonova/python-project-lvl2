@@ -29,7 +29,7 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: bcab0d641b57b4dabecdfac11d60fe91ea962ecaa54fce7d8af0bcac687f9683
       with:
-        coverageCommand: poetry run coverage run
+        coverageCommand: poetry run coverage
     - name: lint
       run: make lint
    
