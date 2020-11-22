@@ -24,5 +24,13 @@ jobs:
       run: pip install poetry
     - name: install dependency
       run: make install
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v2.7.4
+      env:
+        CC_TEST_REPORTER_ID: bcab0d641b57b4dabecdfac11d60fe91ea962ecaa54fce7d8af0bcac687f9683
+      with:
+        coverageCommand: coverage run -m pytest
+        debug: true
     - name: lint
       run: make lint
+   
