@@ -33,7 +33,7 @@ jobs:
         ./cc-test-reporter before-build
         poetry run coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json
         poetry run coverage report
-        ./cc-test-reporter after-build --exit-code 0
+        ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code 0
 
 # with:
       #  coverageCommand: poetry run coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json 
