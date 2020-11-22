@@ -26,3 +26,14 @@ jobs:
       run: make install
     - name: lint
       run: make lint
+  coverage:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v2.7.4
+      env:
+        CC_TEST_REPORTER_ID: bcab0d641b57b4dabecdfac11d60fe91ea962ecaa54fce7d8af0bcac687f9683
+      with:
+        coverageCommand: coverage run -m pytest
+        debug: true
