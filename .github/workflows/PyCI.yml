@@ -31,7 +31,7 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: bcab0d641b57b4dabecdfac11d60fe91ea962ecaa54fce7d8af0bcac687f9683
       with:
-        coverageCommand: coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json 
+        coverageCommand: poetry run coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json 
     - name: lint
       run: make lint
    
