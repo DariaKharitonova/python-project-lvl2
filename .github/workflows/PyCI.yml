@@ -24,12 +24,6 @@ jobs:
       run: pip install poetry
     - name: install dependency
       run: make install
-    - name: lint
-      run: make lint
-  coverage:
-    runs-on: ubuntu-latest
-  
-    steps:
     - name: Test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.4
       env:
@@ -37,3 +31,6 @@ jobs:
       with:
         coverageCommand: coverage run -m pytest
         debug: true
+    - name: lint
+      run: make lint
+   
