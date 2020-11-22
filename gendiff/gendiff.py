@@ -1,12 +1,8 @@
 import json
 
 
-def generate_diff(first_file, second_file):
-    with open(first_file, 'r') as file:
-        file1 = json.load(file)
+def generate_diff(file1, file2):
 
-    with open(second_file, 'r') as file:
-        file2 = json.load(file)
 
     keys_1, keys_2 = set(file1.keys()), set(file2.keys())
     deleted_keys = keys_1 - keys_2
@@ -46,10 +42,10 @@ def generate_diff(first_file, second_file):
                 'value': file2[key],
                 'status': '+'
             })
-    result = '{\n'
-    for x in result:
-        result += f' {x["status"]} {x["key"]}: {x["value"]}\n'
-    result += '}'
-    result = result.replace[
-        ("True", "true").replace("False", "false").replace("None", "null")]
-    return result
+
+    result_string = '{\n'
+    for x in result:  # 3
+        result_string += f'  {x["status"]} {x["key"]}: {x["value"]}\n'
+    result_string += '}'
+    result_string = result_string.replace("True", "true").replace("False", "false").replace("None", "null")
+    return result_string

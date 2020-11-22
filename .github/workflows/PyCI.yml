@@ -26,6 +26,3 @@ jobs:
       run: make install
     - name: lint
       run: make lint
-    - name: Test with pytest
-      run: |
-        make test
