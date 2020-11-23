@@ -4,6 +4,8 @@ install:
 lint:
 	poetry run flake8 gendiff
 
+test:
+	poetry run pytest -v
+
 coverage:
-	poetry run coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json
-	poetry run coverage xml
+	poetry run pytest --cov=gendiff --cov-report xml
