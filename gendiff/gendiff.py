@@ -26,7 +26,8 @@ def generate_diff(file1, file2):
                 'value': file1[key],
                 'status': ' '
             })
-        elif type(file1[key]) is dict and type(file2[key]) is dict and file1[key] != file2[key]:
+        elif type(file1[key]) is dict \
+                and type(file2[key]) is dict and file1[key] != file2[key]:
             res = generate_diff(file1[key], file2[key])
             result.append({
                 'key': key,
