@@ -8,7 +8,7 @@ def format_dict(x, indent):
         result += '{\n'
         indent += 4
         for y in x['value']:
-        result += format_dict(y, indent)
+            result += format_dict(y, indent)
         result += f'{spaces}'
         result += '  }\n'
         return result
