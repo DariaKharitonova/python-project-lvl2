@@ -1,31 +1,28 @@
-def format_dict(x, indent):
+def get_format(x, indent=2):
     result = ""
-    spaces = ""
-    for i in range(indent):
-        spaces += " "
+    spaces = " " * indent
+
     if type(x['value']) is list:
-        result += f'  {spaces}{x["key"]}: '
+        result += f'{spaces}{x["status"]} {x["key"]}: '
         result += '{\n'
         indent += 4
         for y in x['value']:
-            result += format_dict(y, indent)
-        result += f'{spaces}'
-        result += '  }\n'
+            result += get_format(y, indent)
+        result += f'{spaces}  '
+        result += '}\n'
         return result
     result += f'{spaces}{x["status"]} {x["key"]}: {x["value"]}\n'
     return result
 
 
-def formatter(result):
+def stylish(result, indent=2):
     result_string = '{\n'
-    indent = 2
+
     for x in result:
-        print(type(x['value']))
-        result_string += f'  {x["status"]} {x["key"]}: {x["value"]}\n'
-        result_string += format_dict(x, indent)
-        result_string += '}'
-        result_string = result_string\
-            .replace("True", "true")\
-            .replace("False", "false")\
-            .replace("None", "null")
-    return result_string
+        result_string += get_format(x, indent)
+
+    result_string += '}'
+    return result_string\
+        .replace("True", "true")\
+        .replace("False", "false")\
+        .replace("None", "null")

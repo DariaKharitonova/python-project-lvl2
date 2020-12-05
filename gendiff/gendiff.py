@@ -1,5 +1,10 @@
-def generate_diff(file1, file2):
-    keys_1, keys_2 = set(file1.keys()), set(file2.keys())
+ADDED = '+'
+REMOVED = '-'
+UNCHANGED = ' '
+
+
+def generate_diff(data1, data2):
+    keys_1, keys_2 = set(data1.keys()), set(data2.keys())
     deleted_keys = keys_1 - keys_2
     add_keys = keys_2 - keys_1
     all_keys = sorted(keys_1 | keys_2)
@@ -9,41 +14,43 @@ def generate_diff(file1, file2):
         if key in deleted_keys:
             result.append({
                 'key': key,
-                'value': file1[key],
-                'status': '-'
+                'value': generate_diff(data1[key], data1[key])
+                if isinstance(data1[key], dict) else data1[key],
+                'status': REMOVED
             })
-            continue
         elif key in add_keys:
             result.append({
                 'key': key,
-                'value': file2[key],
-                'status': '+'
+                'value': generate_diff(data2[key], data2[key])
+                if isinstance(data2[key], dict) else data2[key],
+                'status': ADDED
             })
-            continue
-        if file1[key] == file2[key]:
+        elif data1[key] == data2[key]:
             result.append({
                 'key': key,
-                'value': file1[key],
-                'status': ' '
-            })
-        elif type(file1[key]) is dict \
-                and type(file2[key]) is dict and file1[key] != file2[key]:
-            res = generate_diff(file1[key], file2[key])
-            result.append({
-                'key': key,
-                'value': res,
-                'status': ' '
+                'value': generate_diff(data1[key], data2[key])
+                if isinstance(data1[key], dict) else data1[key],
+                'status': UNCHANGED
             })
         else:
-            result.append({
-                'key': key,
-                'value': file1[key],
-                'status': '-'
-            })
-            result.append({
-                'key': key,
-                'value': file2[key],
-                'status': '+'
-            })
+            if isinstance(data1[key], dict) and isinstance(data2[key], dict):
+                result.append({
+                    'key': key,
+                    'value': generate_diff(data1[key], data2[key]),
+                    'status': UNCHANGED
+                })
+            else:
+                result.append({
+                    'key': key,
+                    'value': generate_diff(data1[key], data1[key])
+                    if isinstance(data1[key], dict) else data1[key],
+                    'status': REMOVED
+                })
+                result.append({
+                    'key': key,
+                    'value': generate_diff(data2[key], data2[key])
+                    if isinstance(data2[key], dict) else data2[key],
+                    'status': ADDED
+                })
 
     return result

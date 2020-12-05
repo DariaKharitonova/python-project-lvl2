@@ -1,7 +1,7 @@
 import argparse
 from gendiff.get_data.get_data import get_data
 from gendiff.gendiff import generate_diff
-from gendiff.formatter import formatter
+from gendiff.formatter import stylish
 
 
 def main():
@@ -22,7 +22,7 @@ def main():
     result = generate_diff(file1, file2)
 
     if format == 'stylish':
-        print(formatter(result))
+        print(stylish(result))
     else:
         print("Wrong format")
 
