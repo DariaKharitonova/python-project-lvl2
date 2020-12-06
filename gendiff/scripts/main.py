@@ -1,7 +1,11 @@
 import argparse
+import json
 from gendiff.get_data.get_data import get_data
 from gendiff.gendiff import generate_diff
-from gendiff.formatter import stylish
+from gendiff.formatters.stylish import stylish
+from gendiff.formatters.json import get_json_format
+from gendiff.formatters.plain import plain
+
 
 
 def main():
@@ -23,6 +27,10 @@ def main():
 
     if format == 'stylish':
         print(stylish(result))
+    elif format == 'json':
+        print(json.dumps(get_json_format(result),indent=2))
+    elif format == 'plain':
+        print(plain(result))
     else:
         print("Wrong format")
 

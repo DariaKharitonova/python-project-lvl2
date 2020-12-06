@@ -1,6 +1,7 @@
 ADDED = '+'
 REMOVED = '-'
 UNCHANGED = ' '
+UPDATED = '~'
 
 
 def generate_diff(data1, data2):
