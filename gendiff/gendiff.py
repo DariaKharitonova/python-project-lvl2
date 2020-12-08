@@ -1,7 +1,7 @@
-ADDED = '+'
-REMOVED = '-'
-UNCHANGED = ' '
-UPDATED = '~'
+ADDED = 'added'
+REMOVED = 'removed'
+UNCHANGED = 'unchanged'
+UPDATED = 'updated'
 
 
 def generate_diff(data1, data2):
@@ -43,15 +43,13 @@ def generate_diff(data1, data2):
             else:
                 result.append({
                     'key': key,
-                    'value': generate_diff(data1[key], data1[key])
-                    if isinstance(data1[key], dict) else data1[key],
-                    'status': REMOVED
-                })
-                result.append({
-                    'key': key,
-                    'value': generate_diff(data2[key], data2[key])
-                    if isinstance(data2[key], dict) else data2[key],
-                    'status': ADDED
+                    'value': {
+                        'old': generate_diff(data1[key], data1[key])
+                        if isinstance(data1[key], dict) else data1[key],
+                        'new': generate_diff(data2[key], data2[key])
+                        if isinstance(data2[key], dict) else data2[key],
+                    },
+                    'status': UPDATED
                 })
 
     return result

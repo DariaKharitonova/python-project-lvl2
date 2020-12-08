@@ -1,5 +1,4 @@
 import argparse
-import json
 from gendiff.get_data.get_data import get_data
 from gendiff.gendiff import generate_diff
 from gendiff.formatters.stylish import stylish
@@ -27,7 +26,7 @@ def main():
     if format == 'stylish':
         print(stylish(result))
     elif format == 'json':
-        print(json.dumps(get_json_format(result), indent=2))
+        print(get_json_format(result))
     elif format == 'plain':
         print(plain(result))
     else:
