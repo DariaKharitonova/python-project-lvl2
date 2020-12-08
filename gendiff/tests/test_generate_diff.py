@@ -1,4 +1,5 @@
 from gendiff.get_data.get_data import get_data
+from gendiff.gendiff import generate_diff
 
 
 def test_get_data():
