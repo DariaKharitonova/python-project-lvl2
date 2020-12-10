@@ -36,6 +36,8 @@ def get_string(data, prefix):
     elif data["status"] == 'removed':
         return f'Property \'{key}\' was removed\n'
     elif data["status"] == 'updated':
-        return f'Property \'{key}\' was updated. From {get_value(data["value"]["old"])} to {get_value(data["value"]["new"])}\n'
+        return f'Property \'{key}\' was updated. ' \
+               f'From {get_value(data["value"]["old"])} ' \
+               f'to {get_value(data["value"]["new"])}\n'
     else:
         return ''

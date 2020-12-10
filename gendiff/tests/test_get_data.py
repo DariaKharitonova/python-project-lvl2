@@ -1,5 +1,4 @@
 from gendiff.get_data.get_data import get_data
-from gendiff.gendiff import generate_diff
 
 
 def test_get_data():
@@ -41,7 +40,3 @@ def test_get_data():
     for v in cases:
         assert get_data(v['filePath']) == v['want']
         print(v['description'])
-
-
-def test_formatter():
-    return True
