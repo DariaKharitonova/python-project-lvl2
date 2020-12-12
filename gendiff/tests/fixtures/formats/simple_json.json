@@ -1,4 +1,4 @@
-{
+[
   {
     "key": "follow",
     "value": false,
@@ -27,4 +27,4 @@
     "value": true,
     "status": "added"
   }
-}
+]
