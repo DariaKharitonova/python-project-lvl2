@@ -22,7 +22,7 @@ def test_generate_diff_txt_yaml():
     print("simple yaml test passed")
 
 
-def est_generate_diff_plain_json():
+def test_generate_diff_plain_json():
     first_file = read_json('gendiff/tests/fixtures/json/test1.json')
     second_file = read_json('gendiff/tests/fixtures/json/test2.json')
     correct = open('gendiff/tests/fixtures/formats/simple_plain.txt').read()
@@ -30,7 +30,7 @@ def est_generate_diff_plain_json():
     print("simple plain json test passed")
 
 
-def est_generate_diff_plain_yaml():
+def test_generate_diff_plain_yaml():
     first_file = read_yaml('gendiff/tests/fixtures/yaml/test1.yaml')
     second_file = read_yaml('gendiff/tests/fixtures/yaml/test2.yaml')
     correct = open('gendiff/tests/fixtures/formats/simple_plain.txt').read()
