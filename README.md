@@ -1,4 +1,4 @@
-#Generator of Difference
+#  Generator of Difference
 ___
 The training project on the Python Software Development course on [Hexlet.io](https://ru.hexlet.io/professions/python)
 
@@ -10,24 +10,24 @@ ___
 
 Gendiff is a CLI-utility defining the difference between two files.
 ___
-####Install package
+#### Install package
 For install:
 ```bash
 pip install -i https://test.pypi.org/simple/ generate-diff --extra-index-url https://pypi.org/simple
 ```
-####Run to help
+#### Run to help
 You can run package and to see parameters as:
 ```bash
 gendiff - h
 ```
 [![asciicast](https://asciinema.org/a/1jEhdNSpplOpD6YI8sH3VP9Rp.svg)](https://asciinema.org/a/1jEhdNSpplOpD6YI8sH3VP9Rp)
-####Run diff
+#### Run diff
 For compare simple or recursive files YAML and JSON formats:
 ```bash
 gendiff first_file second_file
 ```
 [![asciicast](https://asciinema.org/a/lEmLD1AlaaaTEYMCnm7JzIy9R.svg)](https://asciinema.org/a/lEmLD1AlaaaTEYMCnm7JzIy9R)
-####Output format
+#### Output format
 You can also choose flat or json format to represent the result:
 ```bash
 gendiff first_file second_file --format=plain
@@ -37,7 +37,7 @@ gendiff first_file second_file --format=plain
 gendiff first_file second_file --format=json
 ```
 [![asciicast](https://asciinema.org/a/qv8H6gzHrawiOeUcXfVerOHWB.svg)](https://asciinema.org/a/qv8H6gzHrawiOeUcXfVerOHWB)
-####Tests
+#### Tests
 For run tests, enter:
 ```bash
 make test
