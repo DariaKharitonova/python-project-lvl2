@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "Generate_diff"
+name = "hexlet-code"
 version = "0.1.2"
-description = ""
+description = "The training project on the Python Development"
 authors = ["Daria Kharitonova <kharitonovadari@gmail.com>"]
 packages = [
     { include = "gendiff" },
