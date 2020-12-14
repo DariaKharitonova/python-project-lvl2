@@ -1,4 +1,4 @@
-from gendiff.gendiff import generate_diff
+from gendiff.get_tree_diff import get_diff
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
 from gendiff.formatters.json import get_json_format
@@ -9,7 +9,7 @@ def test_generate_diff_txt_json():
     first_file = read_json('gendiff/tests/fixtures/json/test1.json')
     second_file = read_json('gendiff/tests/fixtures/json/test2.json')
     correct = open('gendiff/tests/fixtures/formats/simple_txt.txt').read()
-    assert stylish(generate_diff(first_file, second_file)) == correct
+    assert stylish(get_diff(first_file, second_file)) == correct
     print("simple json test passed")
 
 
@@ -18,7 +18,7 @@ def test_generate_diff_txt_yaml():
     second_file = read_yaml('gendiff/tests/fixtures/yaml/test2.yaml')
     correct = open('gendiff/tests/fixtures/formats/simple_txt.txt').read()
     print(correct)
-    assert stylish(generate_diff(first_file, second_file)) == correct
+    assert stylish(get_diff(first_file, second_file)) == correct
     print("simple yaml test passed")
 
 
@@ -26,7 +26,7 @@ def test_generate_diff_plain_json():
     first_file = read_json('gendiff/tests/fixtures/json/test1.json')
     second_file = read_json('gendiff/tests/fixtures/json/test2.json')
     correct = open('gendiff/tests/fixtures/formats/simple_plain.txt').read()
-    assert plain(generate_diff(first_file, second_file)) == correct
+    assert plain(get_diff(first_file, second_file)) == correct
     print("simple plain json test passed")
 
 
@@ -35,7 +35,7 @@ def test_generate_diff_plain_yaml():
     second_file = read_yaml('gendiff/tests/fixtures/yaml/test2.yaml')
     correct = open('gendiff/tests/fixtures/formats/simple_plain.txt').read()
     print(correct)
-    assert plain(generate_diff(first_file, second_file)) == correct
+    assert plain(get_diff(first_file, second_file)) == correct
     print("simple plain json test passed")
 
 
@@ -44,6 +44,5 @@ def test_generate_diff_json_format():
     second_file = read_json('gendiff/tests/fixtures/json/test2.json')
     correct = open('gendiff/tests/fixtures/formats/simple_json.json').read()
     print(correct)
-    assert get_json_format(generate_diff
-                           (first_file, second_file)) == correct
+    assert get_json_format(get_diff(first_file, second_file)) == correct
     print("simple plain json test passed")

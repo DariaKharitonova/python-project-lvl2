@@ -42,5 +42,5 @@ def test_get_diff():
     }]
     for v in cases:
         assert get_diff(v['file_before_json'],
-                             v['file_after_json']) == v['want']
+                        v['file_after_json']) == v['want']
         print(v['description'])

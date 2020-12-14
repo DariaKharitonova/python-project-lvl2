@@ -1,4 +1,4 @@
-from gendiff.gendiff import generate_diff
+from gendiff.get_tree_diff import get_diff
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
 from gendiff.formatters.json import get_json_format
@@ -9,7 +9,7 @@ def test_recursive_diff_txt_json():
     first_file = read_json('gendiff/tests/fixtures/json/recursive_test1.json')
     second_file = read_json('gendiff/tests/fixtures/json/recursive_test2.json')
     correct = open('gendiff/tests/fixtures/formats/recursive_txt.txt').read()
-    assert stylish(generate_diff(first_file, second_file)) == correct
+    assert stylish(get_diff(first_file, second_file)) == correct
     print("recursive json test passed")
 
 
@@ -17,7 +17,7 @@ def test_recursive_diff_txt_yaml():
     first_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test1.yaml')
     second_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test2.yaml')
     correct = open('gendiff/tests/fixtures/formats/recursive_txt.txt').read()
-    assert stylish(generate_diff(first_file, second_file)) == correct
+    assert stylish(get_diff(first_file, second_file)) == correct
     print("recursive yaml test passed")
 
 
@@ -25,7 +25,7 @@ def test_recursive_diff_plain_json():
     first_file = read_json('gendiff/tests/fixtures/json/recursive_test1.json')
     second_file = read_json('gendiff/tests/fixtures/json/recursive_test2.json')
     correct = open('gendiff/tests/fixtures/formats/recursive_plain.txt').read()
-    assert plain(generate_diff(first_file, second_file)) == correct
+    assert plain(get_diff(first_file, second_file)) == correct
     print("recursive plain json test passed")
 
 
@@ -33,7 +33,7 @@ def est_recursive_diff_plain_yaml():
     first_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test1.yaml')
     second_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test2.yaml')
     correct = open('gendiff/tests/fixtures/formats/recursive_plain.txt').read()
-    assert plain(generate_diff(first_file, second_file)) == correct
+    assert plain(get_diff(first_file, second_file)) == correct
     print("recursive plain json test passed")
 
 
@@ -41,8 +41,7 @@ def test_recursive_diff_json_format():
     first_file = read_json('gendiff/tests/fixtures/json/recursive_test1.json')
     second_file = read_json('gendiff/tests/fixtures/json/recursive_test2.json')
     correct = open('gendiff/tests/fixtures/formats/recursive_json.json').read()
-    assert get_json_format(generate_diff
-                           (first_file, second_file)) == correct
+    assert get_json_format(get_diff(first_file, second_file)) == correct
     print("recursive plain json test passed")
 
 
@@ -50,6 +49,5 @@ def test_recursive_diff_yaml_format_yaml():
     first_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test1.yaml')
     second_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test2.yaml')
     correct = open('gendiff/tests/fixtures/formats/recursive_json.json').read()
-    assert get_json_format(generate_diff
-                           (first_file, second_file)) == correct
+    assert get_json_format(get_diff(first_file, second_file)) == correct
     print("recursive plain json test passed")

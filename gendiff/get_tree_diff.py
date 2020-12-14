@@ -4,7 +4,7 @@ UNCHANGED = 'unchanged'
 UPDATED = 'updated'
 
 
-def get_diff(data1, data2):
+def get_diff(data1={}, data2={}):
     keys_1, keys_2 = set(data1.keys()), set(data2.keys())
     deleted_keys = keys_1 - keys_2
     add_keys = keys_2 - keys_1
