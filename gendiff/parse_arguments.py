@@ -1,8 +1,8 @@
 import argparse
-from gendiff.gendiff import generate_diff
+from gendiff.get_data import get_data
 
 
-def main():
+def parse_arguments():
     parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('first_file')
     parser.add_argument('second_file')
@@ -14,9 +14,14 @@ def main():
     second_file = args.second_file
     format = args.format
 
-    result = generate_diff(first_file, second_file, format)
-    print(result)
 
+    result = generate_diff(first_file, second_file)
 
-if __name__ == '__main__':
-    main()
+    if format == 'stylish':
+        print(stylish(result))
+    elif format == 'json':
+        print(get_json_format(result))
+    elif format == 'plain':
+        print(plain(result))
+    else:
+        print("Wrong format")
