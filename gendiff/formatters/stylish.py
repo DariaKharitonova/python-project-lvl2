@@ -13,9 +13,9 @@ def stylish(result, indent=2):
         result_string += get_format(x, indent)
 
     result_string += '}'
-    return result_string\
-        .replace("True", "true")\
-        .replace("False", "false")\
+    return result_string \
+        .replace("True", "true") \
+        .replace("False", "false") \
         .replace("None", "null")
 
 
@@ -38,14 +38,14 @@ def format_updated(data, indent):
     old_value = data["value"]["old"]
     new_value = data["value"]["new"]
     if isinstance(old_value, list):
-        result += format_nested(result, {"key": data["key"],
-                                         "value": old_value,
-                                         "status": "removed"}, indent)
+        result += format_nested('', {"key": data["key"],
+                                     "value": old_value,
+                                     "status": "removed"}, indent)
     else:
         result += f'{spaces}- {data["key"]}: {old_value}\n'
 
     if isinstance(new_value, list):
-        result += format_nested(result, {"key": data["key"],
+        result += format_nested('', {"key": data["key"],
                                          "value": new_value,
                                          "status": "added"}, indent)
     else:
