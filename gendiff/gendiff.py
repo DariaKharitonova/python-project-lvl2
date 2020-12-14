@@ -1,4 +1,4 @@
-from gendiff.get_data import get_data
+from gendiff.get_data.get_data import get_data
 from gendiff.get_tree_diff import get_diff
 from gendiff.formatters.formater import view_format, DEFAULT_STYLE
 

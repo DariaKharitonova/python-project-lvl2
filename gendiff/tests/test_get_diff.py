@@ -1,7 +1,7 @@
-from gendiff.gendiff import generate_diff
+from gendiff.get_tree_diff import get_diff
 
 
-def test_generate_diff():
+def test_get_diff():
     cases = [{
         'file_before_json': {
             "host": "hexlet.io",
@@ -41,6 +41,6 @@ def test_generate_diff():
         'description': 'get diff of two json files'
     }]
     for v in cases:
-        assert generate_diff(v['file_before_json'],
+        assert get_diff(v['file_before_json'],
                              v['file_after_json']) == v['want']
         print(v['description'])
