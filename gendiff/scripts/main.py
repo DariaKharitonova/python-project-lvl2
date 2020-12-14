@@ -1,6 +1,6 @@
 import argparse
 from gendiff.get_data.get_data import get_data
-from gendiff.gendiff import generate_diff
+from gendiff.generate_diff import generate_diff
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.json import get_json_format
 from gendiff.formatters.plain import plain
