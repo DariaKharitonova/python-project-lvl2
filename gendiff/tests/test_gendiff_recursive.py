@@ -3,6 +3,9 @@ from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
 from gendiff.formatters.json import get_json_format
 from gendiff.tests.helpers import read_json, read_yaml
+import pytest
+import json
+import yaml
 
 
 def test_recursive_diff_txt_json():
@@ -29,25 +32,33 @@ def test_recursive_diff_plain_json():
     print("recursive plain json test passed")
 
 
-def est_recursive_diff_plain_yaml():
+def test_recursive_diff_plain_yaml():
     first_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test1.yaml')
     second_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test2.yaml')
     correct = open('gendiff/tests/fixtures/formats/recursive_plain.txt').read()
     assert plain(get_diff(first_file, second_file)) == correct
-    print("recursive plain json test passed")
+    print("recursive plain yaml test passed")
 
 
 def test_recursive_diff_json_format():
     first_file = read_json('gendiff/tests/fixtures/json/recursive_test1.json')
     second_file = read_json('gendiff/tests/fixtures/json/recursive_test2.json')
-    correct = open('gendiff/tests/fixtures/formats/recursive_json.json').read()
-    assert get_json_format(get_diff(first_file, second_file)) == correct
-    print("recursive plain json test passed")
+    result_json = get_json_format(get_diff(first_file, second_file))
+    try:
+        json.loads(result_json)
+    except ValueError:
+        pytest.fail(ValueError)
+    assert isinstance(json.loads(result_json), dict)
+    print("recursive json format test passed")
 
 
-def test_recursive_diff_yaml_format_yaml():
+def est_recursive_diff_json_format_yaml():
     first_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test1.yaml')
     second_file = read_yaml('gendiff/tests/fixtures/yaml/recursive_test2.yaml')
-    correct = open('gendiff/tests/fixtures/formats/recursive_json.json').read()
-    assert get_json_format(get_diff(first_file, second_file)) == correct
-    print("recursive plain json test passed")
+    result_yaml = get_json_format(get_diff(first_file, second_file))
+    try:
+        yaml.load(result_yaml, Loader=yaml.FullLoader)
+    except ValueError:
+        pytest.fail(ValueError)
+    assert isinstance(yaml.load(result_yaml, Loader=yaml.FullLoader), dict)
+    print("recursive yaml test passed")
