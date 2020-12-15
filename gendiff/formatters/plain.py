@@ -1,6 +1,6 @@
 def plain(result):
     result_string = ""
-    for x in result:
+    for x in sort_by_key(result):
         result_string += get_format(x)
     return result_string \
         .replace("True", "true") \
@@ -9,11 +9,15 @@ def plain(result):
         .rstrip()
 
 
+def sort_by_key(data):
+    return sorted(data, key=lambda k: k['key'])
+
+
 def get_format(data, prefix=""):
     if isinstance(data['value'], list) and data['status'] == 'unchanged':
         result = ''
         prefix += f'{data["key"]}.'
-        for v in data['value']:
+        for v in sort_by_key(data['value']):
             result += get_format(v, prefix)
         return result
     return get_string(data, prefix)
