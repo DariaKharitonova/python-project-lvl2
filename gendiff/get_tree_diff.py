@@ -5,10 +5,12 @@ UPDATED = 'updated'
 
 
 def get_diff(data1, data2):
-    keys_1, keys_2 = set(data1.keys()), set(data2.keys())
-    deleted_keys = keys_1 - keys_2
-    add_keys = keys_2 - keys_1
-    all_keys = keys_1 | keys_2
+    deleted_keys = data1.keys() - data2.keys()
+    add_keys = data2.keys() - data1.keys()
+    if data2.keys() == data1.keys():
+        all_keys = data1.keys()
+    else:
+        all_keys = data2.keys() | data1.keys()
 
     result = []
     for key in all_keys:
