@@ -30,9 +30,6 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.TOKEN_ID }}
       with:
           coverageCommand: make coverage
-
-# with:
-      #  coverageCommand: poetry run coverage run gendiff/scripts/main.py gendiff/json_file1.json gendiff/json_file2.json 
     - name: lint
       run: make lint
    
