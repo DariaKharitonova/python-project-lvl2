@@ -51,8 +51,3 @@ gendiff first_file second_file --format=plain
 gendiff first_file second_file --format=json
 ```
 [![asciicast](https://asciinema.org/a/qv8H6gzHrawiOeUcXfVerOHWB.svg)](https://asciinema.org/a/qv8H6gzHrawiOeUcXfVerOHWB)
-#### Tests
-For run tests, enter:
-```bash
-make test
-```
