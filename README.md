@@ -21,7 +21,7 @@ You can run package and to see parameters as:
 gendiff - h
 ```
 ```bash
-usage: gendiff [-h] [-f FORMAT] first_file second_file
+usage: gendiff [-h] [-f {stylish,json,plain}] first_file second_file
 
 Generate diff
 
@@ -31,7 +31,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -f FORMAT, --format FORMAT
+  -f {stylish,json,plain}, --format {stylish,json,plain}
                         set format of output
 ```
 [![asciicast](https://asciinema.org/a/1jEhdNSpplOpD6YI8sH3VP9Rp.svg)](https://asciinema.org/a/1jEhdNSpplOpD6YI8sH3VP9Rp)
@@ -51,8 +51,3 @@ gendiff first_file second_file --format=plain
 gendiff first_file second_file --format=json
 ```
 [![asciicast](https://asciinema.org/a/qv8H6gzHrawiOeUcXfVerOHWB.svg)](https://asciinema.org/a/qv8H6gzHrawiOeUcXfVerOHWB)
-#### Tests
-For run tests, enter:
-```bash
-make test
-```

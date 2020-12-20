@@ -6,14 +6,10 @@ STATUSES = {
 }
 
 
-def sort_by_key(data):
-    return sorted(data, key=lambda k: k['key'])
-
-
 def stylish(result, indent=2):
     result_string = '{\n'
 
-    for x in sort_by_key(result):
+    for x in result:
         result_string += get_format(x, indent)
 
     result_string += '}'
@@ -23,13 +19,13 @@ def stylish(result, indent=2):
         .replace("None", "null")
 
 
-def format_nested(result, x, indent=2, sort=True):
+def format_nested(result, x, indent=2):
     spaces = " " * indent
     result += f'{spaces}{STATUSES[x["status"]]} {x["key"]}: '
     result += '{\n'
     indent += 4
-    data = sort_by_key(x['value']) if sort is True else x['value']
-    for y in data:
+
+    for y in x['value']:
         result += get_format(y, indent)
     result += f'{spaces}  '
     result += '}\n'
@@ -65,8 +61,7 @@ def get_format(x, indent=2):
         return format_updated(x, indent)
 
     if type(x['value']) is list:
-        sort = x['status'] != 'added'
-        return format_nested(result, x, indent, sort)
+        return format_nested(result, x, indent)
 
     result += f'{spaces}{STATUSES[x["status"]]} {x["key"]}: {x["value"]}\n'
     return result

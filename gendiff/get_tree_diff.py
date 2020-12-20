@@ -10,7 +10,8 @@ def get_diff(data1, data2):
     if data2.keys() == data1.keys():
         all_keys = data1.keys()
     else:
-        all_keys = data2.keys() | data1.keys()
+        all_keys = list(data2.keys() | data1.keys())
+        all_keys.sort()
 
     result = []
     for key in all_keys:
