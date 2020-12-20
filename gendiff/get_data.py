@@ -17,12 +17,13 @@ def get_data(file_path):
             elif file_extension == '.yaml' or file_extension == '.yml':
                 return yaml.load(file, Loader=yaml.FullLoader)
             else:
-                raise RuntimeError(f'"{file_extension}" is not supported. Use json or yaml format')
-    except OSError as e:
+                raise RuntimeError(f'"{file_extension}" is not supported. '
+                                   f'Use json or yaml format')
+    except OSError:
         raise RuntimeError(f'"{file_path}" not found')
-    except ScannerError as e:
+    except ScannerError:
         raise RuntimeError(f'"{file_path}" is not valid yaml')
-    except JSONDecodeError as e:
+    except JSONDecodeError:
         raise RuntimeError(f'"{file_path}" is not valid json')
     except Exception as e:
         raise e

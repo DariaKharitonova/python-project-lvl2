@@ -1,7 +1,8 @@
+from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED
+
+
 def plain(result):
-    result_string = ""
-    for x in result:
-        result_string += get_format(x)
+    result_string = ''.join(get_format(x) for x in result)
     return result_string \
         .replace("True", "true") \
         .replace("False", "false") \
@@ -10,12 +11,9 @@ def plain(result):
 
 
 def get_format(data, prefix=""):
-    if isinstance(data['value'], list) and data['status'] == 'unchanged':
-        result = ''
+    if isinstance(data['value'], list) and data['status'] == UNCHANGED:
         prefix += f'{data["key"]}.'
-        for v in data['value']:
-            result += get_format(v, prefix)
-        return result
+        return ''.join(get_format(x, prefix) for x in data['value'])
     return get_string(data, prefix)
 
 
@@ -30,12 +28,12 @@ def get_value(value):
 def get_string(data, prefix):
     key = f'{prefix}{data["key"]}'
 
-    if data["status"] == 'added':
+    if data["status"] == ADDED:
         return f'Property \'{key}\'' \
                f' was added with value: {get_value(data["value"])}\n'
-    elif data["status"] == 'removed':
+    elif data["status"] == REMOVED:
         return f'Property \'{key}\' was removed\n'
-    elif data["status"] == 'updated':
+    elif data["status"] == UPDATED:
         return f'Property \'{key}\' was updated. ' \
                f'From {get_value(data["value"]["old"])} ' \
                f'to {get_value(data["value"]["new"])}\n'

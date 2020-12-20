@@ -3,6 +3,15 @@ REMOVED = 'removed'
 UNCHANGED = 'unchanged'
 UPDATED = 'updated'
 
+# def format_json_values(value):
+#     if value is True:
+#         return 'true'
+#     elif value is False:
+#         return 'false'
+#     elif value is None:
+#         return 'null'
+#     return value
+
 
 def get_diff(data1, data2):
     deleted_keys = data1.keys() - data2.keys()

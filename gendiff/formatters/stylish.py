@@ -1,34 +1,30 @@
+from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED
+
 STATUSES = {
-    'added': '+',
-    'removed': '-',
-    'unchanged': ' ',
-    'updated': ' '
+    ADDED: '+',
+    REMOVED: '-',
+    UNCHANGED: ' ',
+    UPDATED: ' '
 }
 
 
 def stylish(result, indent=2):
-    result_string = '{\n'
 
-    for x in result:
-        result_string += get_format(x, indent)
+    data_string = ''.join(get_format(x, indent) for x in result)
+    result_string = f'{{\n{data_string}}}'
 
-    result_string += '}'
     return result_string\
         .replace("True", "true")\
         .replace("False", "false")\
         .replace("None", "null")
 
 
-def format_nested(result, x, indent=2):
+def format_nested(x, indent=2):
     spaces = " " * indent
-    result += f'{spaces}{STATUSES[x["status"]]} {x["key"]}: '
-    result += '{\n'
     indent += 4
-
-    for y in x['value']:
-        result += get_format(y, indent)
-    result += f'{spaces}  '
-    result += '}\n'
+    data_string = ''.join(get_format(y, indent) for y in x['value'])
+    result = f'{spaces}{STATUSES[x["status"]]} ' \
+             f'{x["key"]}: {{\n{data_string}{spaces}  }}\n'
     return result
 
 
@@ -38,15 +34,15 @@ def format_updated(data, indent):
     old_value = data["value"]["old"]
     new_value = data["value"]["new"]
     if isinstance(old_value, list):
-        result += format_nested('', {"key": data["key"],
-                                     "value": old_value,
-                                     "status": "removed"}, indent)
+        result += format_nested({"key": data["key"],
+                                 "value": old_value,
+                                 "status": "removed"}, indent)
     else:
         result += f'{spaces}- {data["key"]}: {old_value}\n'
     if isinstance(new_value, list):
-        result += format_nested('', {"key": data["key"],
-                                     "value": new_value,
-                                     "status": "added"}, indent)
+        result += format_nested({"key": data["key"],
+                                 "value": new_value,
+                                 "status": "added"}, indent)
     else:
         result += f'{spaces}+ {data["key"]}: {new_value}\n'
 
@@ -61,7 +57,7 @@ def get_format(x, indent=2):
         return format_updated(x, indent)
 
     if type(x['value']) is list:
-        return format_nested(result, x, indent)
+        return format_nested(x, indent)
 
     result += f'{spaces}{STATUSES[x["status"]]} {x["key"]}: {x["value"]}\n'
     return result
