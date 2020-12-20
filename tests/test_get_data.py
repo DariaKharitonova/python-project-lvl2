@@ -1,6 +1,7 @@
 from gendiff.get_data import get_data
 import pytest
 
+
 cases = [
     (
         'tests/fixtures/simple/before.json',
@@ -28,8 +29,8 @@ cases = [
         }
     ),
     (
-         'tests/fixtures/simple/after.yaml',
-         {
+        'tests/fixtures/simple/after.yaml',
+        {
             "timeout": 20,
             "verbose": True,
             "host": "hexlet.io"

@@ -7,17 +7,17 @@ def simple_before_path():
 
 
 @pytest.fixture()
-def simple_before_path():
+def simple_after_path():
     return 'tests/fixtures/simple/after.json'
 
 
 @pytest.fixture()
-def simple_before_path():
+def simple_before_path_yaml():
     return 'tests/fixtures/simple/before.yaml'
 
 
 @pytest.fixture()
-def simple_before_path():
+def simple_after_path_yaml():
     return 'tests/fixtures/simple/after.yaml'
 
 
@@ -32,12 +32,12 @@ def complex_after_path():
 
 
 @pytest.fixture()
-def complex_before_path():
+def complex_before_path_yaml():
     return 'tests/fixtures/complex/before.yaml'
 
 
 @pytest.fixture()
-def complex_after_path():
+def complex_after_path_yaml():
     return 'tests/fixtures/complex/after.yaml'
 
 
