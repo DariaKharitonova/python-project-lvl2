@@ -6,6 +6,7 @@ from tests.helpers import read_json, read_yaml
 import pytest
 import json
 
+
 def test_generate_diff_txt_json():
     first_file = read_json('tests/fixtures/simple/before.json')
     second_file = read_json('tests/fixtures/simple/after.json')
