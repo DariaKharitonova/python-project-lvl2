@@ -51,7 +51,7 @@ cases = [(
 )]
 
 
-@pytest.mark.parametrize("file_before, file_after, want", cases)
-def test_get_diff(file_before, file_after, want):
+@pytest.mark.parametrize("data_before, data_after, want", cases)
+def test_get_diff(data_before, data_after, want):
     for v in cases:
-        assert get_diff(file_before, file_after) == want
+        assert get_diff(data_before, data_after) == want

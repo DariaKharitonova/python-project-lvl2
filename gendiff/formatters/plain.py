@@ -1,13 +1,10 @@
 from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED
+from gendiff.helpers.format import format_json_values
 
 
 def plain(result):
     result_string = ''.join(get_format(x) for x in result)
-    return result_string \
-        .replace("True", "true") \
-        .replace("False", "false") \
-        .replace("None", "null") \
-        .rstrip()
+    return result_string.rstrip()
 
 
 def get_format(data, prefix=""):
@@ -22,7 +19,7 @@ def get_value(value):
         return '[complex value]'
     if isinstance(value, str):
         return f'\'{value}\''
-    return value
+    return format_json_values(value)
 
 
 def get_string(data, prefix):

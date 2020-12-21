@@ -1,4 +1,5 @@
 from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED
+from gendiff.helpers.format import format_json_values
 
 STATUSES = {
     ADDED: '+',
@@ -8,19 +9,20 @@ STATUSES = {
 }
 
 
+def get_spaces(indent):
+    return " " * indent
+
+
 def stylish(result, indent=2):
 
     data_string = ''.join(get_format(x, indent) for x in result)
     result_string = f'{{\n{data_string}}}'
 
-    return result_string\
-        .replace("True", "true")\
-        .replace("False", "false")\
-        .replace("None", "null")
+    return result_string
 
 
 def format_nested(x, indent=2):
-    spaces = " " * indent
+    spaces = get_spaces(indent)
     indent += 4
     data_string = ''.join(get_format(y, indent) for y in x['value'])
     result = f'{spaces}{STATUSES[x["status"]]} ' \
@@ -30,7 +32,7 @@ def format_nested(x, indent=2):
 
 def format_updated(data, indent):
     result = ''
-    spaces = " " * indent
+    spaces = get_spaces(indent)
     old_value = data["value"]["old"]
     new_value = data["value"]["new"]
     if isinstance(old_value, list):
@@ -38,20 +40,20 @@ def format_updated(data, indent):
                                  "value": old_value,
                                  "status": REMOVED}, indent)
     else:
-        result += f'{spaces}- {data["key"]}: {old_value}\n'
+        result += f'{spaces}- {data["key"]}: {format_json_values(old_value)}\n'
     if isinstance(new_value, list):
         result += format_nested({"key": data["key"],
                                  "value": new_value,
                                  "status": ADDED}, indent)
     else:
-        result += f'{spaces}+ {data["key"]}: {new_value}\n'
+        result += f'{spaces}+ {data["key"]}: {format_json_values(new_value)}\n'
 
     return result
 
 
 def get_format(x, indent=2):
     result = ""
-    spaces = " " * indent
+    spaces = get_spaces(indent)
 
     if x['status'] == UPDATED:
         return format_updated(x, indent)
@@ -59,5 +61,5 @@ def get_format(x, indent=2):
     if x['nested'] is True:
         return format_nested(x, indent)
 
-    result += f'{spaces}{STATUSES[x["status"]]} {x["key"]}: {x["value"]}\n'
+    result += f'{spaces}{STATUSES[x["status"]]} {x["key"]}: {format_json_values(x["value"])}\n'
     return result
