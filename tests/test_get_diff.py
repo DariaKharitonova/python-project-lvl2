@@ -17,17 +17,20 @@ cases = [(
         {
             'key': "follow",
             'value': False,
-            'status': 'removed'
+            'status': 'removed',
+            'nested': False
         },
         {
             'key': 'host',
             'value': 'hexlet.io',
-            'status': 'unchanged'
+            'status': 'unchanged',
+            'nested': False
         },
         {
             'key': 'proxy',
             'value': '123.234.53.22',
-            'status': 'removed'
+            'status': 'removed',
+            'nested': False
         },
         {
             'key': "timeout",
@@ -35,12 +38,14 @@ cases = [(
                 'old': 50,
                 'new': 20
             },
-            'status': 'updated'
+            'status': 'updated',
+            'nested': False
         },
         {
             'key': 'verbose',
             'value': True,
-            'status': 'added'
+            'status': 'added',
+            'nested': False
         },
     ],
 )]

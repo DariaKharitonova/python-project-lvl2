@@ -36,13 +36,13 @@ def format_updated(data, indent):
     if isinstance(old_value, list):
         result += format_nested({"key": data["key"],
                                  "value": old_value,
-                                 "status": "removed"}, indent)
+                                 "status": REMOVED}, indent)
     else:
         result += f'{spaces}- {data["key"]}: {old_value}\n'
     if isinstance(new_value, list):
         result += format_nested({"key": data["key"],
                                  "value": new_value,
-                                 "status": "added"}, indent)
+                                 "status": ADDED}, indent)
     else:
         result += f'{spaces}+ {data["key"]}: {new_value}\n'
 
@@ -53,10 +53,10 @@ def get_format(x, indent=2):
     result = ""
     spaces = " " * indent
 
-    if x['status'] == 'updated':
+    if x['status'] == UPDATED:
         return format_updated(x, indent)
 
-    if type(x['value']) is list:
+    if x['nested'] is True:
         return format_nested(x, indent)
 
     result += f'{spaces}{STATUSES[x["status"]]} {x["key"]}: {x["value"]}\n'

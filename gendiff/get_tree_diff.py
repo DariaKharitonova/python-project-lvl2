@@ -29,28 +29,32 @@ def get_diff(data1, data2):
                 'key': key,
                 'value': get_diff(data1[key], data1[key])
                 if isinstance(data1[key], dict) else data1[key],
-                'status': REMOVED
+                'status': REMOVED,
+                'nested': isinstance(data1[key], dict)
             })
         elif key in add_keys:
             result.append({
                 'key': key,
                 'value': get_diff(data2[key], data2[key])
                 if isinstance(data2[key], dict) else data2[key],
-                'status': ADDED
+                'status': ADDED,
+                'nested': isinstance(data2[key], dict)
             })
         elif data1[key] == data2[key]:
             result.append({
                 'key': key,
                 'value': get_diff(data1[key], data2[key])
                 if isinstance(data1[key], dict) else data1[key],
-                'status': UNCHANGED
+                'status': UNCHANGED,
+                'nested': isinstance(data1[key], dict)
             })
         else:
             if isinstance(data1[key], dict) and isinstance(data2[key], dict):
                 result.append({
                     'key': key,
                     'value': get_diff(data1[key], data2[key]),
-                    'status': UNCHANGED
+                    'status': UNCHANGED,
+                    'nested': True
                 })
             else:
                 result.append({
@@ -61,7 +65,8 @@ def get_diff(data1, data2):
                         'new': get_diff(data2[key], data2[key])
                         if isinstance(data2[key], dict) else data2[key],
                     },
-                    'status': UPDATED
+                    'status': UPDATED,
+                    'nested': False
                 })
 
     return result

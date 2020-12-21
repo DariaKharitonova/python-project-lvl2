@@ -3,17 +3,20 @@
     {
       "key": "follow",
       "value": false,
-      "status": "removed"
+      "status": "removed",
+      "nested": false
     },
     {
       "key": "host",
       "value": "hexlet.io",
-      "status": "unchanged"
+      "status": "unchanged",
+      "nested": false
     },
     {
       "key": "proxy",
       "value": "123.234.53.22",
-      "status": "removed"
+      "status": "removed",
+      "nested": false
     },
     {
       "key": "timeout",
@@ -21,12 +24,14 @@
         "old": 50,
         "new": 20
       },
-      "status": "updated"
+      "status": "updated",
+      "nested": false
     },
     {
       "key": "verbose",
       "value": true,
-      "status": "added"
+      "status": "added",
+      "nested": false
     }
   ]
 }
