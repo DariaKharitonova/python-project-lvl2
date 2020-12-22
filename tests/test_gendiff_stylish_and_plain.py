@@ -68,4 +68,3 @@ def parameters_test(request):
 def test_diff(parameters_test):
     formatter, first_file, second_file, correct = parameters_test
     assert formatter(get_diff(first_file, second_file)) == correct
-

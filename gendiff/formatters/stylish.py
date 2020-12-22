@@ -61,5 +61,6 @@ def get_format(x, indent=2):
     if x['nested'] is True:
         return format_nested(x, indent)
 
-    result += f'{spaces}{STATUSES[x["status"]]} {x["key"]}: {format_json_values(x["value"])}\n'
+    result += f'{spaces}{STATUSES[x["status"]]} ' \
+              f'{x["key"]}: {format_json_values(x["value"])}\n'
     return result
