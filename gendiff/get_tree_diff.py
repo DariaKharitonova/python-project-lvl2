@@ -39,25 +39,24 @@ def get_diff(data1, data2):
                 'status': UNCHANGED,
                 'nested': isinstance(data1[key], dict)
             })
+        elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
+            result.append({
+                'key': key,
+                'value': get_diff(data1[key], data2[key]),
+                'status': UNCHANGED,
+                'nested': True
+                })
         else:
-            if isinstance(data1[key], dict) and isinstance(data2[key], dict):
-                result.append({
-                    'key': key,
-                    'value': get_diff(data1[key], data2[key]),
-                    'status': UNCHANGED,
-                    'nested': True
-                })
-            else:
-                result.append({
-                    'key': key,
-                    'value': {
-                        'old': get_diff(data1[key], data1[key])
-                        if isinstance(data1[key], dict) else data1[key],
-                        'new': get_diff(data2[key], data2[key])
-                        if isinstance(data2[key], dict) else data2[key],
-                    },
-                    'status': UPDATED,
-                    'nested': False
-                })
+            result.append({
+                'key': key,
+                'value': {
+                    'old': get_diff(data1[key], data1[key])
+                    if isinstance(data1[key], dict) else data1[key],
+                    'new': get_diff(data2[key], data2[key])
+                    if isinstance(data2[key], dict) else data2[key],
+                },
+                'status': UPDATED,
+                'nested': False
+            })
 
     return result

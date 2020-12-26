@@ -19,14 +19,6 @@ def get_format(data, prefix=""):
     return get_string(data, prefix)
 
 
-def get_value(value):
-    if isinstance(value, list):
-        return COMPLEX_VALUE
-    if isinstance(value, str):
-        return f'\'{value}\''
-    return format_json_values(value)
-
-
 def get_string(data, prefix):
     key = f'\'{prefix}{data["key"]}\''
 
@@ -40,3 +32,11 @@ def get_string(data, prefix):
                                      get_value(data["value"]["new"]))
     else:
         return ''
+
+
+def get_value(value):
+    if isinstance(value, list):
+        return COMPLEX_VALUE
+    if isinstance(value, str):
+        return f'\'{value}\''
+    return format_json_values(value)

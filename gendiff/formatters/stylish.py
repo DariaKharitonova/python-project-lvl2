@@ -9,12 +9,7 @@ STATUSES = {
 }
 
 
-def get_spaces(indent):
-    return " " * indent
-
-
 def stylish(result, indent=2):
-
     data_string = ''.join(get_format(x, indent) for x in result)
     result_string = f'{{\n{data_string}}}'
 
@@ -52,7 +47,6 @@ def format_updated(data, indent):
 
 
 def get_format(x, indent=2):
-    result = ""
     spaces = get_spaces(indent)
 
     if x['status'] == UPDATED:
@@ -61,6 +55,10 @@ def get_format(x, indent=2):
     if x['nested'] is True:
         return format_nested(x, indent)
 
-    result += f'{spaces}{STATUSES[x["status"]]} ' \
-              f'{x["key"]}: {format_json_values(x["value"])}\n'
+    result = f'{spaces}{STATUSES[x["status"]]} ' \
+             f'{x["key"]}: {format_json_values(x["value"])}\n'
     return result
+
+
+def get_spaces(indent):
+    return " " * indent
