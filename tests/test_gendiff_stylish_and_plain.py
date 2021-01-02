@@ -10,13 +10,13 @@ import pytest
         stylish,
         read_json('tests/fixtures/complex/complex_before.json'),
         read_json('tests/fixtures/complex/complex_after.json'),
-        open('tests/fixtures/complex/txt.txt').read()
+        open('tests/fixtures/complex/stylish.txt').read()
     ),
     (
         stylish,
         read_yaml('tests/fixtures/complex/complex_before.yaml'),
         read_yaml('tests/fixtures/complex/complex_after.yaml'),
-        open('tests/fixtures/complex//txt.txt').read()
+        open('tests/fixtures/complex//stylish.txt').read()
     ),
     (
         plain,
@@ -34,7 +34,7 @@ import pytest
         stylish,
         read_json('tests/fixtures/simple/before.json'),
         read_json('tests/fixtures/simple/after.json'),
-        open('tests/fixtures/simple/simple_txt.txt').read()
+        open('tests/fixtures/simple/stylish.txt').read()
     ),
     (
         stylish,
@@ -46,7 +46,7 @@ import pytest
         stylish,
         read_yaml('tests/fixtures/simple/before.yaml'),
         read_yaml('tests/fixtures/simple/after.yaml'),
-        open('tests/fixtures/simple/simple_txt.txt').read()
+        open('tests/fixtures/simple/stylish.txt').read()
     ),
     (
         plain,
