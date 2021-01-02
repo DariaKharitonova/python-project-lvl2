@@ -45,7 +45,7 @@ def get_diff(data1, data2):
                 'value': get_diff(data1[key], data2[key]),
                 'status': UNCHANGED,
                 'nested': True
-                })
+            })
         else:
             result.append({
                 'key': key,
