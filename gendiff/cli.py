@@ -10,4 +10,4 @@ def arg_parse():
                         help='set format of output',
                         choices=VIEW_STYLES.keys(),
                         default=DEFAULT_STYLE)
-    return parser.parse_args()
+    return parser

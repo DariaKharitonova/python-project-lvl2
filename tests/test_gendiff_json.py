@@ -7,49 +7,45 @@ import yaml
 
 
 def test_recursive_diff_json_format():
-    first_file = read_json('tests/fixtures/complex/complex_before.json')
-    second_file = read_json('tests/fixtures/complex/complex_after.json')
+    first_file = read_json('tests/fixtures/complex/before.json')
+    second_file = read_json('tests/fixtures/complex/after.json')
+    correct = read_json('tests/fixtures/complex/complex_json.json')
     result_json = get_json_format(get_diff(first_file, second_file))
-    try:
-        json.loads(result_json)
-    except ValueError:
-        pytest.fail(ValueError)
-    assert isinstance(json.loads(result_json), dict)
+    assert json.loads(result_json) == correct
 
 
-def test_recursive_diff_json_format_yaml():
-    first_file = read_yaml('tests/fixtures/complex/complex_before.yaml')
-    second_file = read_yaml('tests/fixtures/complex/complex_after.yaml')
-    result_yaml = get_json_format(get_diff(first_file, second_file))
-    try:
-        yaml.load(result_yaml, Loader=yaml.FullLoader)
-    except ValueError:
-        pytest.fail(ValueError)
-    assert isinstance(yaml.load(result_yaml, Loader=yaml.FullLoader), dict)
-
-
-@pytest.fixture(params=[
+@pytest.mark.parametrize('read_file, first_file_path, second_file_path, correct_file_path', [
     (
-        read_json('tests/fixtures/simple/before.json'),
-        read_json('tests/fixtures/simple/after.json'),
-        read_json('tests/fixtures/simple/simple_json.json')
+        read_json,
+        'simple_before_json',
+        'simple_after_json',
+        'result_simple_json'
     ),
     (
-        read_yaml('tests/fixtures/simple/before.yaml'),
-        read_yaml('tests/fixtures/simple/after.yaml'),
-        read_json('tests/fixtures/simple/simple_json.json')
+        read_yaml,
+        'simple_before_yaml',
+        'simple_after_yaml',
+        'result_simple_json'
+    ),
+    (
+        read_json,
+        'complex_before_json',
+        'complex_after_json',
+        'result_complex_json'
+    ),
+    (
+        read_yaml,
+        'complex_before_yaml',
+        'complex_after_yaml',
+        'result_complex_json'
     )
 ])
-def parameters_test(request):
-    return request.param
+def test_generate_diff_json_format(read_file, first_file_path, second_file_path, correct_file_path, request):
+    first_file = read_file(request.getfixturevalue(first_file_path))
+    second_file = read_file(request.getfixturevalue(second_file_path))
+    correct = read_json(request.getfixturevalue(correct_file_path))
 
-
-def test_generate_diff_json_format(parameters_test):
-    first_file, second_file, correct = parameters_test
     result_json = get_json_format(get_diff(first_file, second_file))
-    try:
-        json.loads(result_json)
-    except ValueError:
-        pytest.fail("Can't load json file.")
+    json.loads(result_json)
     assert isinstance(json.loads(result_json), dict)
     assert json.loads(result_json) == correct

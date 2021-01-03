@@ -3,7 +3,7 @@ from gendiff.gendiff import generate_diff
 
 
 def main():
-    args = arg_parse()
+    args = arg_parse().parse_args()
     try:
         result = generate_diff(args.first_file,
                                args.second_file,

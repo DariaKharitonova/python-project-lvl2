@@ -5,66 +5,67 @@ from tests.helpers import read_json, read_yaml
 import pytest
 
 
-@pytest.fixture(params=[
+@pytest.mark.parametrize('formatter, read_file, first_file_path, second_file_path, correct_file_path', [
     (
-        stylish,
-        read_json('tests/fixtures/complex/complex_before.json'),
-        read_json('tests/fixtures/complex/complex_after.json'),
-        open('tests/fixtures/complex/stylish.txt').read()
+            stylish,
+            read_json,
+            'simple_before_json',
+            'simple_after_json',
+            'result_simple_stylish'
     ),
     (
-        stylish,
-        read_yaml('tests/fixtures/complex/complex_before.yaml'),
-        read_yaml('tests/fixtures/complex/complex_after.yaml'),
-        open('tests/fixtures/complex//stylish.txt').read()
+            stylish,
+            read_yaml,
+            'simple_before_yaml',
+            'simple_after_yaml',
+            'result_simple_stylish'
     ),
     (
-        plain,
-        read_json('tests/fixtures/complex/complex_before.json'),
-        read_json('tests/fixtures/complex/complex_after.json'),
-        open('tests/fixtures/complex//plain.txt').read()
+            plain,
+            read_json,
+            'simple_before_json',
+            'simple_after_json',
+            'result_simple_plain'
     ),
     (
-        plain,
-        read_yaml('tests/fixtures/complex/complex_before.yaml'),
-        read_yaml('tests/fixtures/complex/complex_after.yaml'),
-        open('tests/fixtures/complex//plain.txt').read()
+            plain,
+            read_yaml,
+            'simple_before_yaml',
+            'simple_after_yaml',
+            'result_simple_plain'
     ),
     (
-        stylish,
-        read_json('tests/fixtures/simple/before.json'),
-        read_json('tests/fixtures/simple/after.json'),
-        open('tests/fixtures/simple/stylish.txt').read()
+            stylish,
+            read_json,
+            'complex_before_json',
+            'complex_after_json',
+            'result_complex_stylish'
     ),
     (
-        stylish,
-        read_json('tests/fixtures/simple/before.json'),
-        read_json('tests/fixtures/simple/bool_and_null_in_keys.json'),
-        open('tests/fixtures/simple/bool_and_null_in_keys_result.txt').read()
+            stylish,
+            read_yaml,
+            'complex_before_yaml',
+            'complex_after_yaml',
+            'result_complex_stylish'
     ),
     (
-        stylish,
-        read_yaml('tests/fixtures/simple/before.yaml'),
-        read_yaml('tests/fixtures/simple/after.yaml'),
-        open('tests/fixtures/simple/stylish.txt').read()
+            plain,
+            read_json,
+            'complex_before_json',
+            'complex_after_json',
+            'result_complex_plain'
+
     ),
     (
-        plain,
-        read_json('tests/fixtures/simple/before.json'),
-        read_json('tests/fixtures/simple/after.json'),
-        open('tests/fixtures/simple/simple_plain.txt').read()
-    ),
-    (
-        plain,
-        read_yaml('tests/fixtures/simple/before.yaml'),
-        read_yaml('tests/fixtures/simple/after.yaml'),
-        open('tests/fixtures/simple/simple_plain.txt').read()
+            plain,
+            read_yaml,
+            'complex_before_yaml',
+            'complex_after_yaml',
+            'result_complex_plain'
     )
 ])
-def parameters_test(request):
-    return request.param
-
-
-def test_diff(parameters_test):
-    formatter, first_file, second_file, correct = parameters_test
+def test_diff(formatter, read_file, first_file_path, second_file_path, correct_file_path, request):
+    first_file = read_file(request.getfixturevalue(first_file_path))
+    second_file = read_file(request.getfixturevalue(second_file_path))
+    correct = open(request.getfixturevalue(correct_file_path)).read()
     assert formatter(get_diff(first_file, second_file)) == correct
