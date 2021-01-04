@@ -9,61 +9,61 @@ import pytest
     'formatter, read_file, first_file_path, second_file_path, correct_file_path', # noqa E501
     [
         (
-                stylish,
-                read_json,
-                'simple_before_json',
-                'simple_after_json',
-                'result_simple_stylish'
+            stylish,
+            read_json,
+            'simple_before_json',
+            'simple_after_json',
+            'result_simple_stylish'
         ),
         (
-                stylish,
-                read_yaml,
-                'simple_before_yaml',
-                'simple_after_yaml',
-                'result_simple_stylish'
+            stylish,
+            read_yaml,
+            'simple_before_yaml',
+            'simple_after_yaml',
+            'result_simple_stylish'
         ),
         (
-                plain,
-                read_json,
-                'simple_before_json',
-                'simple_after_json',
-                'result_simple_plain'
+            plain,
+            read_json,
+            'simple_before_json',
+            'simple_after_json',
+            'result_simple_plain'
         ),
         (
-                plain,
-                read_yaml,
-                'simple_before_yaml',
-                'simple_after_yaml',
-                'result_simple_plain'
+            plain,
+            read_yaml,
+            'simple_before_yaml',
+            'simple_after_yaml',
+            'result_simple_plain'
         ),
         (
-                stylish,
-                read_json,
-                'complex_before_json',
-                'complex_after_json',
-                'result_complex_stylish'
+            stylish,
+            read_json,
+            'complex_before_json',
+            'complex_after_json',
+            'result_complex_stylish'
         ),
         (
-                stylish,
-                read_yaml,
-                'complex_before_yaml',
-                'complex_after_yaml',
-                'result_complex_stylish'
+            stylish,
+            read_yaml,
+            'complex_before_yaml',
+            'complex_after_yaml',
+            'result_complex_stylish'
         ),
         (
-                plain,
-                read_json,
-                'complex_before_json',
-                'complex_after_json',
-                'result_complex_plain'
+            plain,
+            read_json,
+            'complex_before_json',
+            'complex_after_json',
+            'result_complex_plain'
 
         ),
         (
-                plain,
-                read_yaml,
-                'complex_before_yaml',
-                'complex_after_yaml',
-                'result_complex_plain'
+            plain,
+            read_yaml,
+            'complex_before_yaml',
+            'complex_after_yaml',
+            'result_complex_plain'
         )
     ])
 def test_diff(formatter, read_file, first_file_path,
