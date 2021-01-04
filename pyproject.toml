@@ -4,8 +4,7 @@ version = "0.1.3"
 description = "The training project on the Python Development"
 authors = ["Daria Kharitonova <kharitonovadari@gmail.com>"]
 packages = [
-    { include = "gendiff" },
-    { include = "tests" }
+    { include = "gendiff"}
 ]
 
 [tool.poetry.scripts]
