@@ -30,13 +30,16 @@ def format_updated(data, indent):
     spaces = get_spaces(indent)
     old_value = data["value"]["old"]
     new_value = data["value"]["new"]
-    if isinstance(old_value, list):
+    if isinstance(old_value, list) and len(old_value) != 0 \
+            and isinstance(old_value[0], dict):
         result += format_nested({"key": data["key"],
                                  "value": old_value,
                                  "status": REMOVED}, indent)
     else:
         result += f'{spaces}- {data["key"]}: {format_json_values(old_value)}\n'
-    if isinstance(new_value, list):
+
+    if isinstance(new_value, list) and len(new_value) != 0 \
+            and isinstance(new_value[0], dict):
         result += format_nested({"key": data["key"],
                                  "value": new_value,
                                  "status": ADDED}, indent)

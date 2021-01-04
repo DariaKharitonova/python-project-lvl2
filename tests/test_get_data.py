@@ -9,7 +9,9 @@ cases = [
             "host": "hexlet.io",
             "timeout": 50,
             "proxy": "123.234.53.22",
-            "follow": False
+            "follow": False,
+            "foo": [1, 2, 3],
+            "bar": ["one", "two"]
         },
     ),
     (
@@ -17,7 +19,9 @@ cases = [
         {
             "timeout": 20,
             "verbose": True,
-            "host": "hexlet.io"
+            "host": "hexlet.io",
+            "foo": [1, 2, 3],
+            "bar": ["one", "two", "three"]
         }
     ),
     (
@@ -25,7 +29,9 @@ cases = [
             "host": "hexlet.io",
             "timeout": 50,
             "proxy": "123.234.53.22",
-            "follow": False
+            "follow": False,
+            "foo": [1, 2, 3],
+            "bar": ["one", "two"]
         }
     ),
     (
@@ -33,7 +39,9 @@ cases = [
         {
             "timeout": 20,
             "verbose": True,
-            "host": "hexlet.io"
+            "host": "hexlet.io",
+            "foo": [1, 2, 3],
+            "bar": ["one", "two", "three"]
         }
     ),
     (

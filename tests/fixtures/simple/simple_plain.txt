@@ -1,3 +1,4 @@
+Property 'bar' was updated. From [complex value] to [complex value]
 Property 'follow' was removed
 Property 'proxy' was removed
 Property 'timeout' was updated. From 50 to 20

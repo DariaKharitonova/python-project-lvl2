@@ -3,7 +3,6 @@ from gendiff.formatters.json import get_json_format
 from tests.helpers import read_json, read_yaml
 import pytest
 import json
-import yaml
 
 
 def test_recursive_diff_json_format():

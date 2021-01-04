@@ -1,9 +1,35 @@
 {
   "data": [
     {
+      "key": "bar",
+      "value": {
+        "old": [
+          "one",
+          "two"
+        ],
+        "new": [
+          "one",
+          "two",
+          "three"
+        ]
+      },
+      "status": "updated",
+      "nested": false
+    },
+    {
       "key": "follow",
       "value": false,
       "status": "removed",
+      "nested": false
+    },
+    {
+      "key": "foo",
+      "value": [
+        1,
+        2,
+        3
+      ],
+      "status": "unchanged",
       "nested": false
     },
     {
