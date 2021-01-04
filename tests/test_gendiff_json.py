@@ -17,28 +17,28 @@ def test_recursive_diff_json_format():
     'read_file, first_file_path, second_file_path, correct_file_path',
     [
         (
-                read_json,
-                'simple_before_json',
-                'simple_after_json',
-                'result_simple_json'
+            read_json,
+            'simple_before_json',
+            'simple_after_json',
+            'result_simple_json'
         ),
         (
-                read_yaml,
-                'simple_before_yaml',
-                'simple_after_yaml',
-                'result_simple_json'
+            read_yaml,
+            'simple_before_yaml',
+            'simple_after_yaml',
+            'result_simple_json'
         ),
         (
-                read_json,
-                'complex_before_json',
-                'complex_after_json',
-                'result_complex_json'
+            read_json,
+            'complex_before_json',
+            'complex_after_json',
+            'result_complex_json'
         ),
         (
-                read_yaml,
-                'complex_before_yaml',
-                'complex_after_yaml',
-                'result_complex_json'
+            read_yaml,
+            'complex_before_yaml',
+            'complex_after_yaml',
+            'result_complex_json'
         )
     ])
 def test_generate_diff_json_format(read_file, first_file_path,
