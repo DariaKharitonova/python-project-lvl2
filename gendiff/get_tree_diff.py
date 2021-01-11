@@ -7,11 +7,9 @@ UPDATED = 'updated'
 def get_diff(data1, data2):
     deleted_keys = data1.keys() - data2.keys()
     add_keys = data2.keys() - data1.keys()
-    if data2.keys() == data1.keys():
-        all_keys = data1.keys()
-    else:
-        all_keys = list(data2.keys() | data1.keys())
-        all_keys.sort()
+    all_keys = list(data2.keys() | data1.keys())
+    all_keys.sort()
+    print(all_keys)
 
     result = []
     for key in all_keys:
