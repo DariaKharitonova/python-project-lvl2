@@ -8,8 +8,6 @@ def get_diff(data1, data2):
     deleted_keys = data1.keys() - data2.keys()
     add_keys = data2.keys() - data1.keys()
     all_keys = list(data2.keys() | data1.keys())
-    all_keys.sort()
-    print(all_keys)
 
     result = []
     for key in all_keys:
@@ -57,4 +55,4 @@ def get_diff(data1, data2):
                 'nested': False
             })
 
-    return result
+    return sorted(result, key=lambda x: x['key'])
