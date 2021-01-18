@@ -38,16 +38,11 @@
         },
         {
           "key": "setting5",
-          "value": [
-            {
-              "key": "key5",
-              "value": "value5",
-              "status": "unchanged",
-              "nested": false
-            }
-          ],
+          "value": {
+            "key5": "value5"
+          },
           "status": "added",
-          "nested": true
+          "nested": false
         },
         {
           "key": "setting6",
@@ -109,14 +104,9 @@
         {
           "key": "nest",
           "value": {
-            "old": [
-              {
-                "key": "key",
-                "value": "value",
-                "status": "unchanged",
-                "nested": false
-              }
-            ],
+            "old": {
+              "key": "value"
+            },
             "new": "str"
           },
           "status": "updated",
@@ -128,62 +118,27 @@
     },
     {
       "key": "group2",
-      "value": [
-        {
-          "key": "abc",
-          "value": 12345,
-          "status": "unchanged",
-          "nested": false
-        },
-        {
-          "key": "deep",
-          "value": [
-            {
-              "key": "id",
-              "value": 45,
-              "status": "unchanged",
-              "nested": false
-            }
-          ],
-          "status": "unchanged",
-          "nested": true
+      "value": {
+        "abc": 12345,
+        "deep": {
+          "id": 45
         }
-      ],
+      },
       "status": "removed",
-      "nested": true
+      "nested": false
     },
     {
       "key": "group3",
-      "value": [
-        {
-          "key": "fee",
-          "value": 100500,
-          "status": "unchanged",
-          "nested": false
-        },
-        {
-          "key": "deep",
-          "value": [
-            {
-              "key": "id",
-              "value": [
-                {
-                  "key": "number",
-                  "value": 45,
-                  "status": "unchanged",
-                  "nested": false
-                }
-              ],
-              "status": "unchanged",
-              "nested": true
-            }
-          ],
-          "status": "unchanged",
-          "nested": true
+      "value": {
+        "fee": 100500,
+        "deep": {
+          "id": {
+            "number": 45
+          }
         }
-      ],
+      },
       "status": "added",
-      "nested": true
+      "nested": false
     }
   ]
 }

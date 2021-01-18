@@ -37,7 +37,7 @@ def get_string(data, prefix):
 
 
 def get_value(value):
-    if isinstance(value, list):
+    if isinstance(value, list) or isinstance(value, dict):
         return COMPLEX_VALUE
     if isinstance(value, str):
         return f'\'{value}\''
