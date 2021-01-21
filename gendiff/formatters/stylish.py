@@ -2,6 +2,12 @@ from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED
 from gendiff.helpers.format import format_json_values
 
 INDENT_STEP = 4
+NESTED_LEVEL_STEP = 6
+
+
+def stylish(result_diff):
+    data = '\n'.join(form_diff(result_diff))
+    return f'{{\n{data}\n}}'
 
 
 def prepare_dict(value, indent):
@@ -10,8 +16,14 @@ def prepare_dict(value, indent):
     return f'{{\n{string}\n{spaces}  }}'
 
 
+def get_value(value, indent=2):
+    return prepare_dict(value, indent) \
+        if isinstance(value, dict) \
+        else format_json_values(value)
+
+
 def prepare_strings(value, indent):
-    spaces = get_spaces(indent + 6)
+    spaces = get_spaces(indent + NESTED_LEVEL_STEP)
     strings = []
     for key, value in value.items():
         if isinstance(value, dict):
@@ -28,12 +40,6 @@ def get_nested_value(value, indent=2):
     data = '\n'.join(form_diff(value, indent + INDENT_STEP))
 
     return f'{{\n{data}\n{spaces + "  "}}}'
-
-
-def get_value(value, indent=2):
-    return prepare_dict(value, indent) \
-        if isinstance(value, dict) \
-        else format_json_values(value)
 
 
 def form_diff(result_diff, indent=2):
@@ -61,11 +67,6 @@ def form_diff(result_diff, indent=2):
                            f'{value}')
 
     return strings
-
-
-def stylish(result_diff):
-    data = '\n'.join(form_diff(result_diff))
-    return f'{{\n{data}\n}}'
 
 
 def get_spaces(indent):
