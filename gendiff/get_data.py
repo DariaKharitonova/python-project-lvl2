@@ -23,7 +23,7 @@ def get_data(file_path):
                 raise RuntimeError(f'"{file_extension}" is not supported. '
                                    f'Use json or yaml format')
     except OSError as err:
-        raise RuntimeError from err
+        raise RuntimeError('Failed to open file') from err
     except ScannerError as err:
         raise RuntimeError(f'"{file_path}" is not valid yaml') from err
     except JSONDecodeError as err:
