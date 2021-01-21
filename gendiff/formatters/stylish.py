@@ -2,7 +2,6 @@ from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED
 from gendiff.helpers.format import format_json_values
 
 INDENT_STEP = 4
-END_LINE_STEP = 2
 
 
 def prepare_dict(value, indent):
