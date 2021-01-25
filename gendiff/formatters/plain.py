@@ -7,7 +7,7 @@ REMOVED_STRING = "Property {0} was removed"
 UPDATED_STRING = "Property {0} was updated. From {1} to {2}"
 
 
-def plain(result):
+def plain(diff):
     result_string = '\n'.join(format_string for x in result
                               if (format_string := get_format(x)))
     return result_string

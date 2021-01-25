@@ -5,8 +5,8 @@ INDENT_STEP = 4
 NESTED_LEVEL_STEP = 6
 
 
-def stylish(result_diff):
-    data = '\n'.join(form_diff(result_diff))
+def stylish(diff):
+    data = '\n'.join(form_diff(diff))
     return f'{{\n{data}\n}}'
 
 

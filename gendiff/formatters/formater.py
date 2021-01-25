@@ -12,7 +12,7 @@ DEFAULT_STYLE = 'stylish'
 
 
 def view_format(result, style=DEFAULT_STYLE):
-    if style in VIEW_STYLES.keys():
+    if style in VIEW_STYLES:
         return VIEW_STYLES.get(style)(result)
     RuntimeError(f'{style} is wrong format. '
                  f'Available formats: stylish, plain, json.')
