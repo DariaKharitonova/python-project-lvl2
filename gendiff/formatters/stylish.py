@@ -1,11 +1,11 @@
-from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED
-from gendiff.helpers.format import format_json_values
+from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED, NESTED
+from gendiff.formatters.format import format_json_values
 
 INDENT_STEP = 4
 NESTED_LEVEL_STEP = 6
 
 
-def stylish(diff):
+def format_stylish(diff):
     data = '\n'.join(form_diff(diff))
     return f'{{\n{data}\n}}'
 
@@ -17,9 +17,9 @@ def prepare_dict(value, indent):
 
 
 def get_value(value, indent=2):
-    return prepare_dict(value, indent) \
-        if isinstance(value, dict) \
-        else format_json_values(value)
+    if isinstance(value, dict):
+        return prepare_dict(value, indent)
+    return format_json_values(value)
 
 
 def prepare_strings(value, indent):
@@ -45,26 +45,27 @@ def get_nested_value(value, indent=2):
 def form_diff(result_diff, indent=2):
     strings = []
     spaces = get_spaces(indent)
-
-    for elem in result_diff:
-        value = get_nested_value(elem["value"], indent) \
-            if elem['nested'] is True\
-            else get_value(elem["value"], indent)
-
-        if elem['status'] == ADDED:
+    sorted_diff = sorted(result_diff, key=lambda x: x['key'])
+    for elem in sorted_diff:
+        value = get_value(elem["value"], indent)
+        status = elem['status']
+        if status == ADDED:
             strings.append(f'{spaces}+ {elem["key"]}: '
                            f'{value}')
-        elif elem['status'] == REMOVED:
+        elif status == REMOVED:
             strings.append(f'{spaces}- {elem["key"]}: '
                            f'{value}')
-        elif elem['status'] == UPDATED:
+        elif status == UPDATED:
             strings.append(f'{spaces}- {elem["key"]}: '
                            f'{get_value(elem["value"]["old"], indent)}')
             strings.append(f'{spaces}+ {elem["key"]}: '
                            f'{get_value(elem["value"]["new"], indent)}')
-        elif elem['status'] == UNCHANGED:
+        elif status == UNCHANGED:
             strings.append(f'{spaces}  {elem["key"]}: '
                            f'{value}')
+        elif status == NESTED:
+            strings.append(f'{spaces}  {elem["key"]}: '
+                           f'{get_nested_value(value, indent)}')
 
     return strings
 

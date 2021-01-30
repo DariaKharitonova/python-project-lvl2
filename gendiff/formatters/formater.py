@@ -1,18 +1,18 @@
-from gendiff.formatters.plain import plain
-from gendiff.formatters.json import get_json_format
-from gendiff.formatters.stylish import stylish
+from gendiff.formatters.plain import format_plain
+from gendiff.formatters.json import format_json
+from gendiff.formatters.stylish import format_stylish
 
-VIEW_STYLES = {
-    'stylish': stylish,
-    'json': get_json_format,
-    'plain': plain
+FORMATS = {
+    'stylish': format_stylish,
+    'json': format_json,
+    'plain': format_plain
 }
 
 DEFAULT_STYLE = 'stylish'
 
 
-def view_format(result, style=DEFAULT_STYLE):
-    if style in VIEW_STYLES:
-        return VIEW_STYLES.get(style)(result)
+def format_diff(result, style=DEFAULT_STYLE):
+    if style in FORMATS:
+        return FORMATS.get(style)(result)
     RuntimeError(f'{style} is wrong format. '
                  f'Available formats: stylish, plain, json.')

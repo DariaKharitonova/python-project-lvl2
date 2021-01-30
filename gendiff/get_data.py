@@ -10,8 +10,8 @@ YML = '.yml'
 
 
 def get_data(file_path):
-    # full_name = path.basename(file_path)
-    file_extension = path.splitext(file_path)[-1].lower()
+    _, ext = path.splitext(file_path)
+    file_extension = ext.lower()
 
     try:
         with open(file_path, 'r') as file:

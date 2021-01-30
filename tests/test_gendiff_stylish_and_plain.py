@@ -1,6 +1,6 @@
 from gendiff.get_tree_diff import get_diff
-from gendiff.formatters.stylish import stylish
-from gendiff.formatters.plain import plain
+from gendiff.formatters.stylish import format_stylish
+from gendiff.formatters.plain import format_plain
 from tests.helpers import read_json, read_yaml
 import pytest
 
@@ -9,49 +9,49 @@ import pytest
     'formatter, read_file, first_file_path, second_file_path, correct_file_path', # noqa E501
     [
         (
-            stylish,
+            format_stylish,
             read_json,
             'simple_before_json',
             'simple_after_json',
             'result_simple_stylish'
         ),
         (
-            stylish,
+            format_stylish,
             read_yaml,
             'simple_before_yaml',
             'simple_after_yaml',
             'result_simple_stylish'
         ),
         (
-            plain,
+            format_plain,
             read_json,
             'simple_before_json',
             'simple_after_json',
             'result_simple_plain'
         ),
         (
-            plain,
+            format_plain,
             read_yaml,
             'simple_before_yaml',
             'simple_after_yaml',
             'result_simple_plain'
         ),
         (
-            stylish,
+            format_stylish,
             read_json,
             'complex_before_json',
             'complex_after_json',
             'result_complex_stylish'
         ),
         (
-            stylish,
+            format_stylish,
             read_yaml,
             'complex_before_yaml',
             'complex_after_yaml',
             'result_complex_stylish'
         ),
         (
-            plain,
+            format_plain,
             read_json,
             'complex_before_json',
             'complex_after_json',
@@ -59,7 +59,7 @@ import pytest
 
         ),
         (
-            plain,
+            format_plain,
             read_yaml,
             'complex_before_yaml',
             'complex_after_yaml',

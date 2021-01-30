@@ -1,5 +1,5 @@
 import argparse
-from gendiff.formatters.formater import DEFAULT_STYLE, VIEW_STYLES
+from gendiff.formatters.formater import DEFAULT_STYLE, FORMATS
 
 
 def arg_parse():
@@ -8,6 +8,6 @@ def arg_parse():
     parser.add_argument('second_file', type=str)
     parser.add_argument('-f', '--format',
                         help='set format of output',
-                        choices=VIEW_STYLES.keys(),
+                        choices=FORMATS.keys(),
                         default=DEFAULT_STYLE)
     return parser

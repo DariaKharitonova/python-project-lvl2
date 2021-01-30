@@ -1,5 +1,5 @@
-from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED
-from gendiff.helpers.format import format_json_values
+from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, NESTED
+from gendiff.formatters.format import format_json_values
 
 COMPLEX_VALUE = '[complex value]'
 ADDED_STRING = "Property {0} was added with value: {1}"
@@ -7,17 +7,19 @@ REMOVED_STRING = "Property {0} was removed"
 UPDATED_STRING = "Property {0} was updated. From {1} to {2}"
 
 
-def plain(diff):
-    result_string = '\n'.join(format_string for x in result
-                              if (format_string := get_format(x)))
+def format_plain(diff):
+    sorted_diff = sorted(diff, key=lambda x: x['key'])
+    result_string = '\n'.join(filter(lambda x: x != '', map(lambda x: get_format(x), sorted_diff)))
     return result_string
 
 
 def get_format(data, prefix=""):
-    if data['nested'] is True and data['status'] == UNCHANGED:
+    if data['status'] == NESTED:
         prefix += f'{data["key"]}.'
-        return '\n'.join(format_string for x in data['value']
-                         if (format_string := get_format(x, prefix)))
+        value = sorted(data['value'], key=lambda x: x['key'])
+        # return '\n'.join(format_string for x in value
+        #                  if (format_string := get_format(x, prefix)))
+        return '\n'.join(filter(lambda x: x != '', map(lambda x: get_format(x, prefix), value)))
     return get_string(data, prefix)
 
 

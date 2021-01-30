@@ -13,14 +13,12 @@
           "three"
         ]
       },
-      "status": "updated",
-      "nested": false
+      "status": "updated"
     },
     {
       "key": "follow",
       "value": false,
-      "status": "removed",
-      "nested": false
+      "status": "removed"
     },
     {
       "key": "foo",
@@ -29,20 +27,17 @@
         2,
         3
       ],
-      "status": "unchanged",
-      "nested": false
+      "status": "unchanged"
     },
     {
       "key": "host",
       "value": "hexlet.io",
-      "status": "unchanged",
-      "nested": false
+      "status": "unchanged"
     },
     {
       "key": "proxy",
       "value": "123.234.53.22",
-      "status": "removed",
-      "nested": false
+      "status": "removed"
     },
     {
       "key": "timeout",
@@ -50,14 +45,12 @@
         "old": 50,
         "new": 20
       },
-      "status": "updated",
-      "nested": false
+      "status": "updated"
     },
     {
       "key": "verbose",
       "value": true,
-      "status": "added",
-      "nested": false
+      "status": "added"
     }
   ]
 }

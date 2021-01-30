@@ -18,19 +18,16 @@ cases = [(
             'key': "follow",
             'value': False,
             'status': 'removed',
-            'nested': False
         },
         {
             'key': 'host',
             'value': 'hexlet.io',
             'status': 'unchanged',
-            'nested': False
         },
         {
             'key': 'proxy',
             'value': '123.234.53.22',
             'status': 'removed',
-            'nested': False
         },
         {
             'key': "timeout",
@@ -39,13 +36,11 @@ cases = [(
                 'new': 20
             },
             'status': 'updated',
-            'nested': False
         },
         {
             'key': 'verbose',
             'value': True,
             'status': 'added',
-            'nested': False
         },
     ],
 )]
@@ -53,4 +48,4 @@ cases = [(
 
 @pytest.mark.parametrize("data_before, data_after, want", cases)
 def test_get_diff(data_before, data_after, want):
-    assert get_diff(data_before, data_after) == want
+    assert sorted(get_diff(data_before, data_after), key=lambda x: x['key']) == want
