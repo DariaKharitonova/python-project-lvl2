@@ -48,4 +48,5 @@ cases = [(
 
 @pytest.mark.parametrize("data_before, data_after, want", cases)
 def test_get_diff(data_before, data_after, want):
-    assert sorted(get_diff(data_before, data_after), key=lambda x: x['key']) == want
+    assert sorted(get_diff(data_before, data_after),
+                  key=lambda x: x['key']) == want

@@ -38,9 +38,9 @@ def test_generate_diff_json_format(read_file, first_file_path,
                                    request):
     first_file = read_file(request.getfixturevalue(first_file_path))
     second_file = read_file(request.getfixturevalue(second_file_path))
-    # correct = read_json(request.getfixturevalue(correct_file_path))
+    correct = read_json(request.getfixturevalue(correct_file_path))
 
     result_json = format_json(get_diff(first_file, second_file))
     json.loads(result_json)
     assert isinstance(json.loads(result_json), dict)
-    # assert json.loads(result_json) == correct
+    assert json.loads(result_json) == correct
