@@ -1,5 +1,5 @@
 import argparse
-from gendiff.formatters.formater import DEFAULT_STYLE, FORMATS
+from gendiff.formatters.format_diff import DEFAULT_STYLE, FORMATS
 
 
 def arg_parse():

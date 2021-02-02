@@ -13,6 +13,8 @@ DEFAULT_STYLE = 'stylish'
 
 def format_diff(diff, style=DEFAULT_STYLE):
     if style in FORMATS:
-        return FORMATS.get(style)(diff)
-    RuntimeError(f'{style} is wrong format. '
-                 f'Available formats: stylish, plain, json.')
+        formatter = FORMATS.get(style)
+        if formatter is None:
+            raise RuntimeError(f'{style} is wrong format. '
+                               f'Available formats: stylish, plain, json.')
+        return formatter(diff)

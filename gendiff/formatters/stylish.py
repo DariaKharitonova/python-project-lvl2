@@ -1,13 +1,12 @@
 from gendiff.get_tree_diff import ADDED, REMOVED, UPDATED, UNCHANGED, NESTED
-from gendiff.formatters.format import format_json_values
-from gendiff.formatters.helper import reorder
+from gendiff.formatters.sort_diff_keys import sort_keys
 
 INDENT_STEP = 4
 NESTED_LEVEL_STEP = 6
 
 
 def format_stylish(diff):
-    sorted_diff = reorder(diff, 'key')
+    sorted_diff = sort_keys(diff)
     stylish_diff = '\n'.join(format_diff(sorted_diff))
     return f'{{\n{stylish_diff}\n}}'
 
@@ -21,7 +20,14 @@ def format_dict(value, indent):
 def format_value(value, indent=2):
     if isinstance(value, dict):
         return format_dict(value, indent)
-    return format_json_values(value)
+    else:
+        if value is True:
+            return 'true'
+        elif value is False:
+            return 'false'
+        elif value is None:
+            return 'null'
+        return value
 
 
 def format_dict_in_strings(value, indent):
@@ -37,7 +43,7 @@ def format_dict_in_strings(value, indent):
     return strings
 
 
-def get_nested_value(value, indent=2):
+def format_nested_value(value, indent=2):
     spaces = get_spaces(indent)
     data = '\n'.join(format_diff(value, indent + INDENT_STEP))
 
@@ -66,7 +72,7 @@ def format_diff(diff, indent=2):
                            f'{value}')
         elif status == NESTED:
             strings.append(f'{spaces}  {elem["key"]}: '
-                           f'{get_nested_value(value, indent)}')
+                           f'{format_nested_value(value, indent)}')
 
     return strings
 

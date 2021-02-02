@@ -7,7 +7,7 @@ NESTED = 'nested'
 
 def get_diff(data1, data2):
     deleted_keys = data1.keys() - data2.keys()
-    add_keys = data2.keys() - data1.keys()
+    added_keys = data2.keys() - data1.keys()
 
     all_keys = data2.keys() | data1.keys()
     diff = []
@@ -19,7 +19,7 @@ def get_diff(data1, data2):
                 'value': data1[key],
                 'status': REMOVED,
             })
-        elif key in add_keys:
+        elif key in added_keys:
             diff.append({
                 'key': key,
                 'value': data2[key],
