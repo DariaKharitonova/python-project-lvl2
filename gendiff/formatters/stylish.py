@@ -30,13 +30,13 @@ def format_value(value, indent=2):
         return value
 
 
-def format_dict_in_strings(value, indent):
+def format_dict_in_lines(value, indent):
     spaces = get_spaces(indent + NESTED_LEVEL_STEP)
     strings = []
     for key, value in value.items():
         if isinstance(value, dict):
             strings.append(f'{spaces}{key}: {{')
-            strings.extend(format_dict_in_strings(value, indent + INDENT_STEP))
+            strings.extend(format_dict_in_lines(value, indent + INDENT_STEP))
             strings.append(f'{spaces}}}')
         else:
             strings.append(f'{spaces}{key}: {value}')
