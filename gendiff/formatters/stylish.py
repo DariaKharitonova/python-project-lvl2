@@ -13,7 +13,7 @@ def format_stylish(diff):
 
 def format_dict(value, indent):
     spaces = get_spaces(indent)
-    string = '\n'.join(format_dict_in_strings(value, indent))
+    string = '\n'.join(format_dict_in_lines(value, indent))
     return f'{{\n{string}\n{spaces}  }}'
 
 
