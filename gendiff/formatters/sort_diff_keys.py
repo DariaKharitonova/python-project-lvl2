@@ -1,4 +1,4 @@
-NESTED = 'nested'
+from gendiff.get_tree_diff import NESTED
 
 
 def sort_keys(data):
